@@ -155,16 +155,26 @@
 
         const filter = new Tone.Filter({ frequency: 800, type: "lowpass" }).toDestination();
         const vibrato = new Tone.Vibrato({ frequency: 3, depth: 0.08 });
+// Create a reverb effect
+const reverb = new Tone.Reverb({
+    decay: 4,       // Length of the reverb in seconds
+    preDelay: 0.1,  // Delay before reverb starts
+    wet: 0.5        // 50% reverb mix
+});
 
-        baseOsc.chain(vibrato, baseGain, filter, wave);
-        harmonic1.chain(harmonicGain, filter, wave);
-        harmonic2.chain(harmonicGain, filter, wave);
-        thirdEye.chain(thirdEyeGain, filter, thirdEyeWave);
-        throat.chain(throatGain, filter, throatWave);
-        heart.chain(heartGain, filter, heartWave);
-        solar.chain(solarGain, filter, solarWave);
-        sacral.chain(sacralGain, filter, sacralWave);
-        root.chain(rootGain, filter, rootWave);
+// Wait for the reverb to be ready before use
+reverb.generate().then(() => {
+    console.log("Reverb is ready!");
+});
+        baseOsc.chain(vibrato, baseGain, reverb, filter, wave);
+harmonic1.chain(harmonicGain, reverb, filter, wave);
+harmonic2.chain(harmonicGain, reverb, filter, wave);
+thirdEye.chain(thirdEyeGain, reverb, filter, thirdEyeWave);
+throat.chain(throatGain, reverb, filter, throatWave);
+heart.chain(heartGain, reverb, filter, heartWave);
+solar.chain(solarGain, reverb, filter, solarWave);
+sacral.chain(sacralGain, reverb, filter, sacralWave);
+root.chain(rootGain, reverb, filter, rootWave);
 
 
         function toggleAudio(oscillator, stateVar, startButtonId, stopButtonId) {
