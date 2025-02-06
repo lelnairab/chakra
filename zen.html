@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Meditation Audio</title> 
+    <style>
+        /* Button Styling */
+        #start-button, #stop-button, #start-third-eye, #stop-third-eye, #start-throat, #stop-throat, #start-heart, #stop-heart, #start-solar, #stop-solar,#start-sacral,#stop-sacral,#start-root,#stop-root {
+            position: fixed;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        /* Crown Chakra Audio Buttons */
+        #start-button, #stop-button {
+            top: 100px;
+            left: 1182px;
+            background-color: purple;
+        }
+        #stop-button {
+            display: none;
+            background-color: red;
+        }
+        /* Third Eye Chakra Audio Buttons */
+        #start-third-eye, #stop-third-eye {
+            top: 160px;
+            left: 1182px;
+            background-color: blue;
+        }
+        #stop-third-eye {
+            display: none;
+            background-color: darkblue;
+        }
+        /* Throat Chakra Audio Buttons */
+        #start-throat, #stop-throat {
+            top: 220px;
+            left: 1182px;
+            background-color: green;
+        }
+        #stop-throat {
+            display: none;
+            background-color: darkgreen;
+        }
+        /* Heart Chakra Audio Buttons */
+        #start-heart, #stop-heart {
+            top: 280px;
+            left: 1182px;
+            background-color: pink;
+        }
+        #stop-heart {
+            display: none;
+            background-color: darkred;
+        }
+        #start-solar, #stop-solar {
+            top: 340px;
+            left: 1182px;
+            background-color: yellow;
+        }
+        #stop-solar {
+            display: none;
+            background-color: dark yellowgreen;
+        }
+        #start-sacral, #stop-sacral {
+            top: 400px;
+            left: 1182px;
+            background-color: orange;
+        }
+        #stop-sacral {
+            display: none;
+            background-color:orangered;
+        }
+        #start-root, #stop-root {
+            top: 460px;
+            left: 1182px;
+            background-color: red;
+        }
+        #stop-root {
+            display: none;
+            background-color:darkred;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div id="visualization"></div>
+    </main>
+
+    <!-- Control Buttons -->
+    <button id="start-button">Start Crown Audio</button>
+    <button id="stop-button">Stop Crown Audio</button>
+    <button id="start-third-eye">Start Third Eye Audio</button>
+    <button id="stop-third-eye">Stop Third Eye Audio</button>
+    <button id="start-throat">Start Throat Audio</button>
+    <button id="stop-throat">Stop Throat Audio</button>
+    <button id="start-heart">Start Heart Audio</button>
+    <button id="stop-heart">Stop Heart Audio</button>
+    <button id="start-solar">Start Solar Plexus Audio</button>
+    <button id="stop-solar">Stop Solar Plexus Audio</button>
+    <button id="start-sacral">Start Sacral Plexus Audio</button>
+    <button id="stop-sacral">Stop Sacral Plexus Audio</button>
+    <button id="start-root">Start Root Plexus Audio</button>
+    <button id="stop-root">Stop Root Plexus Audio</button>
+
+
+    <!-- External Scripts -->
+    <script src="https://unpkg.com/tone"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="https://algorithmicmusic.online/js/create-waveform.js"></script>
+
+    <script>
+        /* global Tone, createWaveform */
+
+        let started = false;
+        let thirdEyeStarted = false;
+        let throatStarted = false;
+        let heartStarted = false;
+        let solarStarted = false;
+        let sacralStarted = false;
+        let rootStarted = false;
+
+        const wave = createWaveform();
+        const thirdEyeWave = createWaveform();
+        const throatWave = createWaveform();
+        const heartWave = createWaveform();
+        const solarWave = createWaveform();
+        const sacralWave = createWaveform();
+        const rootWave = createWaveform();
+
+
+        /* Oscillators and Gains */
+        const baseOsc = new Tone.Oscillator({ frequency: 698.5, type: "sine" });
+        const harmonic1 = new Tone.Oscillator({ frequency: 349.25, type: "sine" });
+        const harmonic2 = new Tone.Oscillator({ frequency: 174.62, type: "sine" });
+        const thirdEye = new Tone.Oscillator({ frequency: 622.25, type: "sine" });
+        const throat = new Tone.Oscillator({ frequency: 587.3, type: "sine" });
+        const heart = new Tone.Oscillator({ frequency: 523.3, type: "sine" });
+        const solar = new Tone.Oscillator({ frequency: 466.16, type: "sine" });
+        const sacral = new Tone.Oscillator({ frequency: 440, type: "sine" });
+        const root = new Tone.Oscillator({ frequency: 392, type: "sine" });
+
+        const baseGain = new Tone.Gain(0.01);
+        const harmonicGain = new Tone.Gain(0.02);
+        const thirdEyeGain = new Tone.Gain(0.02);
+        const throatGain = new Tone.Gain(0.02);
+        const heartGain = new Tone.Gain(0.02);
+        const solarGain = new Tone.Gain(0.02);
+        const sacralGain = new Tone.Gain(0.02);
+        const rootGain = new Tone.Gain(0.02);
+
+
+        const filter = new Tone.Filter({ frequency: 800, type: "lowpass" }).toDestination();
+        const vibrato = new Tone.Vibrato({ frequency: 3, depth: 0.08 });
+
+        baseOsc.chain(vibrato, baseGain, filter, wave);
+        harmonic1.chain(harmonicGain, filter, wave);
+        harmonic2.chain(harmonicGain, filter, wave);
+        thirdEye.chain(thirdEyeGain, filter, thirdEyeWave);
+        throat.chain(throatGain, filter, throatWave);
+        heart.chain(heartGain, filter, heartWave);
+        solar.chain(solarGain, filter, solarWave);
+        sacral.chain(sacralGain, filter, sacralWave);
+        root.chain(rootGain, filter, rootWave);
+
+
+        function toggleAudio(oscillator, stateVar, startButtonId, stopButtonId) {
+            if (stateVar) {
+                oscillator.stop();
+                document.getElementById(startButtonId).style.display = 'block';
+                document.getElementById(stopButtonId).style.display = 'none';
+            } else {
+                oscillator.start();
+                document.getElementById(startButtonId).style.display = 'none';
+                document.getElementById(stopButtonId).style.display = 'block';
+            }
+            return !stateVar;
+        }
+
+        document.getElementById('start-button').addEventListener('click', () => started = toggleAudio(baseOsc, started, 'start-button', 'stop-button'));
+        document.getElementById('stop-button').addEventListener('click', () => started = toggleAudio(baseOsc, started, 'start-button', 'stop-button'));
+        document.getElementById('start-third-eye').addEventListener('click', () => thirdEyeStarted = toggleAudio(thirdEye, thirdEyeStarted, 'start-third-eye', 'stop-third-eye'));
+        document.getElementById('stop-third-eye').addEventListener('click', () => thirdEyeStarted = toggleAudio(thirdEye, thirdEyeStarted, 'start-third-eye', 'stop-third-eye'));
+        document.getElementById('start-throat').addEventListener('click', () => throatStarted = toggleAudio(throat, throatStarted, 'start-throat', 'stop-throat'));
+        document.getElementById('stop-throat').addEventListener('click', () => throatStarted = toggleAudio(throat, throatStarted, 'start-throat', 'stop-throat'));
+        document.getElementById('start-heart').addEventListener('click', () => heartStarted = toggleAudio(heart, heartStarted, 'start-heart', 'stop-heart'));
+        document.getElementById('stop-heart').addEventListener('click', () => heartStarted = toggleAudio(heart, heartStarted, 'start-heart', 'stop-heart'));
+        document.getElementById('start-solar').addEventListener('click', () => solarStarted = toggleAudio(solar, solarStarted, 'start-solar', 'stop-solar'));
+        document.getElementById('stop-solar').addEventListener('click', () => solarStarted = toggleAudio(solar, solarStarted, 'start-solar', 'stop-solar'));
+        document.getElementById('start-sacral').addEventListener('click', () => sacralStarted = toggleAudio(sacral, sacralStarted, 'start-sacral', 'stop-sacral'));
+        document.getElementById('stop-sacral').addEventListener('click', () => sacralStarted = toggleAudio(sacral, sacralStarted, 'start-sacral', 'stop-sacral'));
+        document.getElementById('start-root').addEventListener('click', () => rootStarted = toggleAudio(root, rootStarted, 'start-root', 'stop-root'));
+        document.getElementById('stop-root').addEventListener('click', () => rootStarted = toggleAudio(root, rootStarted, 'start-root', 'stop-root'));
+
+    </script>
+</body>
+</html>

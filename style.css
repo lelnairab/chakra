@@ -1,0 +1,72 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: 'Quicksand', sans-serif;
+}
+
+/* Home Page */
+#chakra-home {
+    height: 100vh;
+    background: url('chakraHome.png') center/cover no-repeat fixed;
+}
+
+/* Second Page Layout */
+#second-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px;
+    height: 100vh;
+    position: relative;
+}
+
+/* Chakra Image Section */
+#image-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#chakra-person {
+    max-height: 80%;
+    max-width: 80%;
+    border-radius: 10px;
+}
+
+/* Chakra Text Section */
+#text-section {
+    flex: 1;
+    padding: 20px 40px;
+}
+
+#text-section h2 {
+    font-size: 2.5rem;
+    color: #1156fb;
+    margin-bottom: 20px;
+}
+
+#text-section p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #555;
+}
+
+/* Zen Fusion Button - Only inside the second section */
+#zen-fusion-btn {
+    position: absolute;
+    left: 706px;
+    bottom: 50px; /* Adjust to a reasonable height from the bottom */
+    padding: 12px 24px;
+    font-size: 18px;
+    background-color: #6a11cb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#zen-fusion-btn:hover {
+    background-color: #2575fc;
+}
