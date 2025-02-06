@@ -40,10 +40,33 @@ body {
     padding: 20px 40px;
 }
 
-#text-section h2 {
-    font-size: 2.5rem;
-    color: #1156fb;
-    margin-bottom: 20px;
+/* Chakra Colors */
+.crown-chakra {
+    color: purple;
+}
+
+.third-eye-chakra {
+    color: blue;
+}
+
+.throat-chakra {
+    color: lightblue;
+}
+
+.heart-chakra {
+    color: yellowgreen;
+}
+
+.solar-plexus-chakra {
+    color: gold;
+}
+
+.sacral-chakra {
+    color: orange;
+}
+
+.root-chakra {
+    color: red;
 }
 
 #text-section p {

@@ -3,7 +3,7 @@ document.getElementById('second-section').addEventListener('click', function(eve
     
     // Chakra center coordinates and names
     const chakras = [
-        { name: "Crown", x: 365, y: 106, description: "The Crown Chakra represents spiritual connection and enlightenment." },
+        { name: "Crown", x: 365, y: 106, description: "The Crown Chakra represents spiritual connection and enlightenment."},
         { name: "Third Eye", x: 365, y: 197, description: "The Third Eye Chakra represents intuition and wisdom." },
         { name: "Throat", x: 365, y: 283, description: "The Throat Chakra is associated with communication and self-expression." },
         { name: "Heart", x: 365, y: 365, description: "The Heart Chakra represents love, compassion, and emotional balance." },
@@ -24,10 +24,10 @@ document.getElementById('second-section').addEventListener('click', function(eve
     for (let chakra of chakras) {
         if (Math.abs(xCoordinate - chakra.x) <= range && Math.abs(yCoordinate - chakra.y) <= range) {
             textSection.innerHTML = `
-                <h2>${chakra.name} Chakra</h2>
-                <p>${chakra.description}</p>
-                <p>Practice meditations to balance your ${chakra.name} Chakra and enhance your well-being.</p>
-            `;
+            <h1 class="${chakra.name.toLowerCase().replace(/\s+/g, '-')}-chakra">${chakra.name} Chakra</h1>
+            <p>${chakra.description}</p>
+            <p>Practice meditations to balance your ${chakra.name} Chakra and enhance your well-being.</p>
+        `;
 /*
             // Add Start Meditation button **only for Crown Chakra**
             if (chakra.name === "Crown") {
